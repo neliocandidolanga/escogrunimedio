@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escolha de grupo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Escolha de Grupo de Disciplinas</h1>
+        <div class="form-group">
+            <label for="portugues">Nota em Português:</label>
+            <input type="number" id="portugues" min="0" max="20" placeholder="Digite a nota de 10 a 20" required>
+        </div>
+        <div class="form-group">
+            <label for="ingles">Nota em Inglês:</label>
+            <input type="number" id="ingles" min="0" max="20" placeholder="Digite a nota de 10 a 20" required>
+        </div>
+        <div class="form-group">
+            <label for="matematica">Nota em Matemática:</label>
+            <input type="number" id="matematica" min="10" max="20" placeholder="Digite a nota de 10 a 20" required>
+        </div>
+        <div class="form-group">
+            <label for="fisica">Nota em Física:</label>
+            <input type="number" id="fisica" min="10" max="20" placeholder="Digite a nota de 10 a 20" required>
+        </div>
+        <div class="form-group">
+            <label for="quimica">Nota em Química:</label>
+            <input type="number" id="quimica" min="10" max="20" placeholder="Digite a nota de 10 a 20" required>
+        </div>
+        <div class="form-group">
+            <label for="geografia">Nota em Geografia:</label>
+            <input type="number" id="geografia" min="10" max="20" placeholder="Digite a nota de 10 a 20" required>
+        </div>
+        <div class="form-group">
+            <label for="historia">Nota em História:</label>
+            <input type="number" id="historia" min="10" max="20" placeholder="Digite a nota de 10 a 20" required>
+        </div>
+        <div class="form-group">
+            <label for="visual">Nota em Educação Visual:</label>
+            <input type="number" id="visual" min="10" max="20" placeholder="Digite a nota de 10 a 20" required>
+        </div>
+        <div class="form-group">
+            <label for="biologia">Nota em Biologia:</label>
+            <input type="number" id="biologia" min="10" max="20" placeholder="Digite a nota de 10 a 20" required>
+        </div>
+        <button class="btn" onclick="calcularGrupo()">Calcular Grupo</button>
+        <div class="result" id="resultado"></div>
+    </div>
+
+     <div class="form-group" style="margin-top: 30px;">
+            <label for="avaliacao">Depois de usar o sistema, por favor <strong>avalie-o</strong> clicando no link abaixo:</label><br>
+            <a href="https://valdimirosm.github.io/infor/" target="_blank"><button class="btn">Avaliar o Sistema </button></a>
+        </div>
+
+    <script>
+        function calcularGrupo() {
+    // Função para calcular a média
+    function calcularMedia(arr) {
+        const soma = arr.reduce((a, b) => a + b, 0);
+        return soma / arr.length;
+    }
+
+    // Função para calcular o desvio padrão
+    function calcularDesvioPadrao(arr) {
+        const media = calcularMedia(arr);
+        const soma = arr.reduce((a, b) => a + Math.pow(b - media, 2), 0);
+        return Math.sqrt(soma / arr.length);
+    }
+
+    // Função para calcular o coeficiente de variação (CV)
+    function calcularCV(arr) {
+        const media = calcularMedia(arr);
+        const desvioPadrao = calcularDesvioPadrao(arr);
+        return (desvioPadrao / media) * 100;
+    }
+
+    // Capturando as notas inseridas pelo usuário
+    let portugues = parseFloat(document.getElementById('portugues').value);
+    let ingles = parseFloat(document.getElementById('ingles').value);
+    let matematica = parseFloat(document.getElementById('matematica').value);
+    let fisica = parseFloat(document.getElementById('fisica').value);
+    let quimica = parseFloat(document.getElementById('quimica').value);
+    let geografia = parseFloat(document.getElementById('geografia').value);
+    let historia = parseFloat(document.getElementById('historia').value);
+    let visual = parseFloat(document.getElementById('visual').value);
+    let biologia = parseFloat(document.getElementById('biologia').value);
+
+    // Verificação para garantir que todas as notas foram inseridas
+    if (isNaN(portugues) || isNaN(ingles) || isNaN(matematica) || isNaN(fisica) || isNaN(quimica) || isNaN(geografia) || isNaN(historia) || isNaN(biologia) || isNaN(visual)) {
+        document.getElementById('resultado').innerText = "Por favor, preencha todas as notas.";
+        return;
+    }
+
+    // Agrupando as notas de Humanas e Exatas
+    let notasHumanas = [portugues, ingles, geografia, historia];
+    let notasExatas = [matematica, fisica, quimica, biologia];
+    let notasGrupoC = [matematica, fisica, quimica, visual];
+
+    // Calculando médias e desvios padrões
+    let mediaHumanas = calcularMedia(notasHumanas);
+    let desvioPadraoHumanas = calcularDesvioPadrao(notasHumanas);
+    let cvHumanas = calcularCV(notasHumanas);
+
+    let mediaExatas = calcularMedia(notasExatas);
+    let desvioPadraoExatas = calcularDesvioPadrao(notasExatas);
+    let cvExatas = calcularCV(notasExatas);
+
+    let mediaGrupoC = calcularMedia(notasGrupoC);
+    let desvioPadraoGrupoC = calcularDesvioPadrao(notasGrupoC);
+    let cvGrupoC = calcularCV(notasGrupoC);
+
+    let grupo;
+
+    // Decisão com base no coeficiente de variação
+    if (cvHumanas < cvExatas && cvHumanas < cvGrupoC) {
+        grupo = "Grupo A (Português, Inglês, Geografia, História)";
+    } else if (cvExatas < cvHumanas && cvExatas < cvGrupoC) {
+        grupo = "Grupo B (Matemática, Física, Química, Biologia)";
+    } else {
+        grupo = "Grupo C (Matemática, Física, Química, Educação Visual)";
+    }
+
+    // Exibindo o resultado
+    document.getElementById('resultado').innerText = `Recomendação: ${grupo} \nCV Humanas: ${cvHumanas.toFixed(2)}% \nCV Exatas: ${cvExatas.toFixed(2)}% \nCV Grupo C: ${cvGrupoC.toFixed(2)}%`;
+}
+    </script>
+</body>
+</html>

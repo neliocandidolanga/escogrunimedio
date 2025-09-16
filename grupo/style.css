@@ -1,0 +1,108 @@
+@charset "utf-8";
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #d8f3dc, #b7e4c7);
+    animation: fadeInBody 1s ease-in;
+}
+
+@keyframes fadeInBody {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px 40px;
+    background-color: #ffffff;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    text-align: center;
+    animation: fadeInContainer 1s ease-in;
+}
+
+@keyframes fadeInContainer {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+h1 {
+    text-align: center;
+    color: #2d6a4f;
+    font-size: 2em;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin: 0 auto 8px auto;
+    background-color: #40916c;
+    color: white;
+    font-weight: bold;
+    padding: 10px 0;
+    border-radius: 6px;
+    font-size: 16px;
+    width: 70%;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+label:hover {
+    background-color: #2d6a4f;
+}
+
+input[type="number"] {
+    width: 70%;
+    padding: 12px 15px;
+    border: 1.5px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="number"]:focus {
+    border-color: #2d6a4f;
+    box-shadow: 0 0 8px rgba(45, 106, 79, 0.4);
+    outline: none;
+}
+
+.result {
+    margin-top: 25px;
+    padding: 18px;
+    background-color: #d8f3dc;
+    color: #1b4332;
+    border: 2px solid #2d6a4f;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 18px;
+    animation: fadeInResult 1s ease-in-out;
+}
+
+@keyframes fadeInResult {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.btn {
+    background-color: #e63946;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.4s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+    background-color: #c1121f;
+    transform: scale(1.05);
+}

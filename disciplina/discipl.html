@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Desempenho por Disciplina</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Carrega bibliotecas -->
+  
+  
+  
+
+
+  
+</head>
+<body>
+  <div class="container">
+    <h1>Análise de Desempenho por Disciplina</h1>
+    <div id="disciplinas-container">
+      <!-- Disciplinas dinâmicas serão inseridas aqui -->
+    </div>
+
+    <button onclick="adicionarDisciplina()" class="btn add">Adicionar Disciplina</button>
+    <button onclick="analisar()" class="btn">Analisar</button>
+
+    <div id="export-area">
+        <div id="resultados"></div>
+        <canvas id="grafico"></canvas>
+      </div>
+      
+
+   
+  
+<button onclick="window.print()" class="btn">Imprimir ou Exporta-pdf</button>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
+ 
+</body>
+</html>
