@@ -1,0 +1,2 @@
+# escogrunimedio
+ escolhadegrupo
